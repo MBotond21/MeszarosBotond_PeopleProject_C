@@ -33,7 +33,14 @@ namespace PeopleProject
 
         public double getAverageAge()
         {
-            return people.Average(p => p.Age);
+            if(people.Count == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return people.Average(p => p.Age);
+            }
         }
 
         public int getNumberOfStudents()
@@ -43,17 +50,38 @@ namespace PeopleProject
 
         public Person getPersonWithHighestScore()
         {
-            return people.Where(p => p.Score == people.Max(p => p.Score)).First();
+            if(people.Count == 0)
+            {
+                throw new ArgumentException("Üres listával ez a művelet nem hajtható végre!");
+            }
+            else
+            {
+                return people.Where(p => p.Score == people.Max(p => p.Score)).First();
+            }
         }
 
         public double getAverageScoreOfStudents()
         {
-            return people.Average(p => p.Score);
+            if (people.Count == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return people.Average(p => p.Score);
+            }
         }
 
         public Person getOldestStudent()
         {
-            return people.Where(p => p.Age == people.Max(p => p.Age)).First();
+            if (people.Count == 0)
+            {
+                throw new ArgumentException("Üres listával ez a művelet nem hajtható végre!");
+            }
+            else
+            {
+                return people.Where(p => p.Age == people.Where(p => p.IsStudent).Max(p => p.Age) && p.IsStudent).First();
+            }
         }
 
         public bool isAnyoneFailing()
