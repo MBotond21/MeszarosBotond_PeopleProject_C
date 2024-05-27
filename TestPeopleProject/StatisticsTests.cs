@@ -12,5 +12,11 @@ namespace TestPeopleProject
 
             Assert.DoesNotThrow(() => { PersonStatistics pS = new PersonStatistics(p); });
         }
+
+        [Test]
+        public void PersonStatistics_Letrehozasa_Null_Adattaggal_HibatDob()
+        {
+            Assert.Throws<ArgumentNullException>(() => { PersonStatistics pS = new PersonStatistics(null); });
+        }
     }
 }
