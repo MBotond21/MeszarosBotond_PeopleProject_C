@@ -12,21 +12,21 @@ namespace PeopleProject
 
         public PersonStatistics(List<Person> people)
         {
-            this.people = People;
+            this.People = people;
         }
 
-        internal List<Person> People
+        public List<Person> People
         {
             private get { return people; }
             set
             {
-                if (people != null)
+                if (value is null)
                 {
-                    people = value;
+                    throw new ArgumentNullException(nameof(people));
                 }
                 else
                 {
-                    throw new ArgumentNullException(nameof(people));
+                    people = value;
                 }
             }
         }
